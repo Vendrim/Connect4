@@ -29,10 +29,10 @@ public class Board {
 
     public void drop_Play_Piece(int column){
         if (X_turn){
-            dropX(column);
+            dropX(column-1);
         }
         else{
-            dropO(column);
+            dropO(column-1);
         }
         X_turn = !X_turn;
     }
@@ -73,13 +73,13 @@ public class Board {
         return filled_board;
     }
 
-    public void insertIntoBoard(String character, int pos_X, int pos_Y) {
-        board[pos_X][pos_Y] = character;
-    }
-
-    public void insertIntoBoard(char character, int pos_X, int pos_Y) {
-        board[pos_X][pos_Y] = Character.toString(character);
-    }
+//    public void insertIntoBoard(String character, int pos_X, int pos_Y) {
+//        board[pos_X][pos_Y] = character;
+//    }
+//
+//    public void insertIntoBoard(char character, int pos_X, int pos_Y) {
+//        board[pos_X][pos_Y] = Character.toString(character);
+//    }
 
     public String getFromBoard(int pos_X, int pos_Y){
         return board[pos_X][pos_Y];

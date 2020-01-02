@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public class UI {
-    // PURPOSE: - PrintOut a Welcome Menu
-    //          - Ask User how big Board is supposed to be
-    //          - If Single-Player or Multi-Player
+    // PURPOSE: - PrintOut a Welcome Menu -- done
+    //          - Ask User how big Board is supposed to be --done
+    //          - If Single-Player or Multi-Player --done
     //              - If Single-Player choose difficulty (1 - 3)
-    //          - After Choice is made show board to user, while user is playing.
+    //          - After Choice is made show board to user, while user is playing. --done
 
 
 //           ******                                               **        **
@@ -23,7 +23,8 @@ public class UI {
     Scanner scanner = new Scanner(System.in);
     String input;
     int[] configuration = new int[2];
-
+    Logic logic ;
+    Board board;
     public UI() {
 
         printTitle();
@@ -31,17 +32,21 @@ public class UI {
         askIfSingleOrMultiplayer();
         input = scanner.next();
         configuration = analyseChoice(Integer.parseInt(input));
-        Board board = new Board(configuration[1]);
+        board = new Board(configuration[1]);
+        logic = new Logic(board);
 
-        while(true){
-            board.drop_Play_Piece(Integer.parseInt(scanner.next()));
-            board.render_board();
 
-        }
 
 
     }
 
+    public void do_game(){
+        while(!(logic.checkIfFourConnect())){
+            board.drop_Play_Piece(Integer.parseInt(scanner.next()));
+            board.render_board();
+
+        }
+    }
     private void printTitle() {
         System.out.println("           ######                                                ##         ##");
         System.out.println("          ##////##                                              /##        #/#");
