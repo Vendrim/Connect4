@@ -72,8 +72,12 @@ public class UI {
     }
 
     private int askUserHowBigBoard() {
-        System.out.println("On how many columns would you like to play? :");
+        System.out.println("On how many columns would you like to play? (at least 4, recommended are 7 ):");
         String k = scanner.next();
+        while(Integer.parseInt(k) < 4){
+            System.out.println("At least 4 please.");
+            k = scanner.next();
+        }
         return Integer.parseInt(k);
     }
 

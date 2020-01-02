@@ -109,9 +109,9 @@ public class Board {
 
                 System.out.print(" |");
 
-                if (j == board.length - 1) {
-                    System.out.print("  |");
-                    System.out.println(board[i][j]);
+                if (j == board.length -1 ) {
+                    System.out.println(board[i][j] + " |");
+
                 } else {
                     System.out.print(board[i][j]);
                 }
