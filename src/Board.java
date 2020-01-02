@@ -39,12 +39,12 @@ public class Board {
 
     private void dropX(int column){
         board[columnStackArray[column]][column] = "X";
-        columnStackArray[column]++;
+        columnStackArray[column]--;
     }
 
     private void dropO(int column){
         board[columnStackArray[column]][column] = "O";
-        columnStackArray[column]++;
+        columnStackArray[column]--;
 
     }
 
@@ -57,7 +57,7 @@ public class Board {
     private void initColumnStackArray(int columns){
         columnStackArray = new int[columns];
         for (int i = 0; i < columns; i++){
-            columnStackArray[i]= 0;
+            columnStackArray[i]= columns - 1;
         }
     }
 
