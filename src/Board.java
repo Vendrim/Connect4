@@ -1,16 +1,67 @@
 public class Board {
     private String[][] board;
-
-    public Board(int x, int y) {
-        board = Fill_up_Board(x, y);
+    private int[] columnStackArray;
+    private boolean X_turn = false;
+    int columns;
+    public Board(int columns) {
+        init_board(columns, columns);
+        this.columns = columns;
+        initColumnStackArray(columns);
     }
 
-    public void init_board() {
-        board[3][4] = "X";
+    public void render_board(){
         printTopLine();
         printColumns();
         printNumberPart();
+        System.out.println("");
+        printTurn();
     }
+
+    private void printTurn(){
+        if(X_turn){
+            System.out.print("X");
+        }
+        else{
+            System.out.print("O");
+        }
+        System.out.println(" it's your turn!");
+    }
+
+    public void drop_Play_Piece(int column){
+        if (X_turn){
+            dropX(column);
+        }
+        else{
+            dropO(column);
+        }
+        X_turn = !X_turn;
+    }
+
+    private void dropX(int column){
+        board[columnStackArray[column]][column] = "X";
+        columnStackArray[column]++;
+    }
+
+    private void dropO(int column){
+        board[columnStackArray[column]][column] = "O";
+        columnStackArray[column]++;
+
+    }
+
+    public void init_board(int x, int y) {
+        board = Fill_up_Board(x, y);
+        render_board();
+    }
+
+
+    private void initColumnStackArray(int columns){
+        columnStackArray = new int[columns];
+        for (int i = 0; i < columns; i++){
+            columnStackArray[i]= 0;
+        }
+    }
+
+
 
     public String[][] Fill_up_Board(int x, int y) {
         String[][] filled_board = new String[x][y];
@@ -87,7 +138,7 @@ public class Board {
             } else {
                 System.out.print("|");
             }
-            System.out.print(i);
+            System.out.print(i+1);
         }
         System.out.println(" |");
     }
